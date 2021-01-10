@@ -11,72 +11,42 @@
     </section>
 
     <div class="featured-posts">
-
-      <nuxt-link
-        :to="'/posts/' + 1"
-         class="post-preview"
+      <app-post-preview
+        :id="1"
+        title="Hello there!"
+        previewText="This is my first post"
+        thumbnail="https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png"
       >
-
-        <article>
-
-          <div
-            class="post-thumbnail"
-            style="background-image: url('https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png')"
-          >
-
-          </div>
-
-          <div class="post-content">
-
-            <h1>
-              Post title
-            </h1>
-
-            <p>
-              Preview text
-            </p>
-
-          </div>
-
-        </article>
-
-      </nuxt-link>
-
-      <nuxt-link
-        :to="'/posts/' + 1"
-        class="post-preview"
+      </app-post-preview>
+      <app-post-preview
+        :id="2"
+        title="Sonsayo!"
+        previewText="This is my second post"
+        thumbnail="https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png"
       >
-
-        <article>
-
-          <div
-            class="post-thumbnail"
-            style="background-image: url('https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png')"
-          >
-
-          </div>
-
-          <div class="post-content">
-
-            <h1>
-              Post title
-            </h1>
-
-            <p>
-              Preview text
-            </p>
-
-          </div>
-
-        </article>
-
-      </nuxt-link>
-
+      </app-post-preview>
+      <app-post-preview
+        :id="3"
+        title="Hello man!"
+        previewText="This is my third post"
+        thumbnail="https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png"
+      >
+      </app-post-preview>
     </div>
 
   </div>
 
 </template>
+
+<script>
+import PostPreview from '../components/posts/PostPreview';
+
+export default {
+  components: {
+    'app-post-preview': PostPreview
+  }
+}
+</script>
 
 <style scoped>
 .intro {
@@ -116,41 +86,5 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
-
-.post-preview {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #ccc;
-  background-color: white;
-  width: 90%;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-@media (min-width: 850px) {
-  .post-preview {
-    width: 400px;
-    margin: 10px;
-  }
-}
-
-.post-thumbnail {
-  width: 100%;
-  height: 200px;
-  background-position: center;
-  background-size: cover;
-}
-
-.post-content {
-  padding: 10px;
-  text-align: center;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
 }
 </style>
