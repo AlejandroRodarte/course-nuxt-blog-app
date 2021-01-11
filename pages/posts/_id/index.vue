@@ -5,23 +5,23 @@
     <section class="post">
 
       <h1 class="post-title">
-        Title of the post
+        {{ loadedPost.title }}
       </h1>
 
       <div class="post-details">
 
         <div class="post-detail">
-          Last updated on xxx
+          Last updated on {{ loadedPost.updatedDate }}
         </div>
 
         <div class="post-detail">
-          Written by dummy
+          Written by {{ loadedPost.author }}
         </div>
 
       </div>
 
       <p class="post-content">
-        Content of the post
+        {{ loadedPost.content }}
       </p>
 
     </section>
@@ -43,6 +43,34 @@
   </div>
 
 </template>
+
+<script>
+export default {
+
+  asyncData(ctx, cb) {
+
+    setTimeout(() => {
+
+      cb(null, {
+
+        loadedPost: {
+          id: '1',
+          title: `First post (id: ${ ctx.route.params.id })`,
+          previewText: 'Super cool first post!',
+          author: 'Alex',
+          updatedDate: new Date(),
+          content: 'Some dummy text content for this super awesome first post',
+          thumbnail: 'https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png'
+        }
+
+      });
+
+    }, 1000);
+
+  }
+
+}
+</script>
 
 <style scoped>
 .single-post-page {
