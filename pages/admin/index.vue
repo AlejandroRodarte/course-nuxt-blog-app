@@ -4,9 +4,9 @@
 
     <section class="new-post">
 
-      <button @click="$router.push('/admin/new-post')">
+      <app-button @click="$router.push('/admin/new-post')">
         Create post
-      </button>
+      </app-button>
 
     </section>
 
@@ -26,10 +26,12 @@
 
 <script>
 import PostList from '../../components/posts/PostList';
+import AppButton from '../../components/ui/AppButton';
 
 export default {
   components: {
-    'app-post-list': PostList
+    'app-post-list': PostList,
+    'app-button': AppButton
   }
 }
 </script>
