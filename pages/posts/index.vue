@@ -18,7 +18,7 @@ export default {
     'app-post-list': PostList
   },
 
-  asyncData() {
+  asyncData(ctx) {
 
     return new Promise((res, rej) => {
 
@@ -48,7 +48,12 @@ export default {
 
       }, 1000);
 
-    });
+      // to throw errors
+      // rej(new Error());
+
+    })
+    .then(data => data)
+    .catch(e => ctx.error(e));
 
   }
 
