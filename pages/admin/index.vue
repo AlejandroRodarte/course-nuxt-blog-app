@@ -29,10 +29,14 @@ import PostList from '../../components/posts/PostList';
 import AppButton from '../../components/ui/AppButton';
 
 export default {
+
   components: {
     'app-post-list': PostList,
     'app-button': AppButton
-  }
+  },
+
+  layout: 'admin'
+
 }
 </script>
 

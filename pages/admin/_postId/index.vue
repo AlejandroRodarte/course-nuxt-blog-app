@@ -22,6 +22,8 @@ export default {
     'app-admin-post-form': AdminPostForm
   },
 
+  layout: 'admin',
+
   data() {
     return {
       loadedPost: {

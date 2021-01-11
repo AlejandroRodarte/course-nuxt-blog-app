@@ -19,7 +19,9 @@ export default {
 
   components: {
     'app-admin-post-form': AdminPostForm
-  }
+  },
+
+  layout: 'admin'
 
 }
 </script>
