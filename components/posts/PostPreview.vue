@@ -44,6 +44,11 @@ export default {
       required: true
     },
 
+    isAdmin: {
+      type: Boolean,
+      required: true
+    },
+
     title: {
       type: String,
       required: true
@@ -64,7 +69,7 @@ export default {
   computed: {
 
     postPreviewLink() {
-      return `/posts/${ this.id }`;
+      return this.isAdmin ? `/admin/${ this.id }` : `/posts/${ this.id }`;
     },
 
     postThumbnailStyles() {

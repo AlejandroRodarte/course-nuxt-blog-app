@@ -16,7 +16,7 @@
         Existing posts
       </h1>
 
-      <app-post-list></app-post-list>
+      <app-post-list isAdmin></app-post-list>
 
     </section>
 
