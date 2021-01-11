@@ -51,7 +51,7 @@ export default {
 
     setTimeout(() => {
 
-      cb(null, {
+      cb(new Error(), {
 
         loadedPost: {
           id: '1',
