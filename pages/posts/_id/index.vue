@@ -52,7 +52,7 @@ export default {
   async asyncData(ctx) {
 
     try {
-      const res = await axios.get(`${ process.env.baseUrl }/posts/${ ctx.params.id }.json`);
+      const res = await axios.get(`${ ctx.$config.baseUrl }/posts/${ ctx.params.id }.json`);
       return { loadedPost: res.data };
     } catch (e) {
       ctx.error(e);

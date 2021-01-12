@@ -8,7 +8,7 @@ const actions = {
 
     try {
 
-      const res = await axios.post('https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts.json', payload.post);
+      const res = await axios.post(`${ payload.ctx.baseUrl }/posts.json`, payload.post);
 
       const newPost = {
         id: res.data.name,
@@ -31,7 +31,7 @@ const actions = {
 
     try {
 
-      await axios.put(`${ process.env.baseUrl }/posts/${ payload.postId }.json`, payload.post);
+      await axios.put(`${ payload.ctx.baseUrl }/posts/${ payload.postId }.json`, payload.post);
 
       const mutationPayload = {
         post: {

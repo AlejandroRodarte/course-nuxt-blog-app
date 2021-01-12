@@ -38,7 +38,10 @@ export default {
 
     async onSubmit(postData) {
 
-      const payload = { post: postData };
+      const payload = {
+        post: postData,
+        ctx: this.$config
+      };
 
       try {
         await this.addPost(payload);

@@ -36,7 +36,7 @@ export default {
   async asyncData(ctx) {
 
     try {
-      const res = await axios.get(`${ process.env.baseUrl }/posts/${ ctx.params.postId }.json`);
+      const res = await axios.get(`${ ctx.$config.baseUrl }/posts/${ ctx.params.postId }.json`);
       return { loadedPost: res.data, postId: ctx.params.postId };
     } catch (e) {
       ctx.error(e);
@@ -52,7 +52,11 @@ export default {
 
     async onSubmit(editedPost) {
 
-      const payload = { post: editedPost, postId: this.postId };
+      const payload = {
+         post: editedPost,
+         postId: this.postId,
+         ctx: this.$config
+      };
 
       try {
         await this.editPost(payload);

@@ -36,8 +36,8 @@ export default {
   build: {
   },
 
-  env: {
-    baseUrl: process.env.BASE_URL || 'https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com'
+  publicRuntimeConfig: {
+    baseUrl: 'https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com'
   }
 
 }
