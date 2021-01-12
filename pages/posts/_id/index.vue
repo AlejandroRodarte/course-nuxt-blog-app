@@ -58,6 +58,10 @@ export default {
       ctx.error(e);
     }
 
+  },
+
+  head: {
+    title: 'A Blog Post'
   }
 
 }
