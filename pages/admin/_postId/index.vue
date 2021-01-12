@@ -19,7 +19,11 @@
 <script>
 import axios from 'axios';
 
+import { mapActions } from 'vuex';
+
 import AdminPostForm from '../../../components/admin/AdminPostForm';
+
+import { withNamespace as postTypes } from '../../../store/modules/posts';
 
 export default {
 
@@ -33,8 +37,7 @@ export default {
 
     try {
       const res = await axios.get(`https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts/${ ctx.params.postId }.json`);
-      console.log(res);
-      return { loadedPost: res.data };
+      return { loadedPost: res.data, postId: ctx.params.postId };
     } catch (e) {
       ctx.error(e);
     }
@@ -43,15 +46,20 @@ export default {
 
   methods: {
 
-    onSubmit(editedPost) {
+    ...mapActions({
+      editPost: postTypes.EDIT_POST
+    }),
 
-      axios
-        .put(`https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts/${ this.$route.params.postId }.json`, {
-          ...editedPost,
-          updatedDate: new Date()
-        })
-        .then(() => this.$router.push('/admin'))
-        .catch(console.log);
+    async onSubmit(editedPost) {
+
+      const payload = { post: editedPost, postId: this.postId };
+
+      try {
+        await this.editPost(payload);
+        this.$router.push('/admin')
+      } catch (e) {
+        console.log(e);
+      }
 
     }
 

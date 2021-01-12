@@ -16,7 +16,11 @@
 <script>
 import axios from 'axios';
 
+import { mapActions } from 'vuex';
+
 import AdminPostForm from '../../../components/admin/AdminPostForm';
+
+import { withNamespace as postTypes } from '../../../store/modules/posts';
 
 export default {
 
@@ -28,12 +32,20 @@ export default {
 
   methods: {
 
-    onSubmit(postData) {
+    ...mapActions({
+      addPost: postTypes.ADD_POST
+    }),
 
-      axios
-        .post('https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts.json', postData)
-        .then(console.log)
-        .catch(console.log);
+    async onSubmit(postData) {
+
+      const payload = { post: postData };
+
+      try {
+        await this.addPost(payload);
+        this.$router.push('/admin');
+      } catch (e) {
+        console.log(e);
+      }
 
     }
 
