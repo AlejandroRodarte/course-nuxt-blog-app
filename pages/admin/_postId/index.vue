@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 import AdminPostForm from '../../../components/admin/AdminPostForm';
 
 export default {
@@ -24,15 +26,16 @@ export default {
 
   layout: 'admin',
 
-  data() {
-    return {
-      loadedPost: {
-        author: 'Alex',
-        title: 'super cool',
-        content: 'yay super gay man',
-        thumbnailLink: 'https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png'
-      }
+  async asyncData(ctx) {
+
+    try {
+      const res = await axios.get(`https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts/${ ctx.params.postId }.json`);
+      console.log(res);
+      return { loadedPost: res.data };
+    } catch (e) {
+      ctx.error(e);
     }
+
   }
 
 }

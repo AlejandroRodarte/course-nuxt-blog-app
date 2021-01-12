@@ -18,7 +18,7 @@
 
       <app-post-list
         isAdmin
-        :posts="[]"
+        :posts="loadedPosts"
       >
       </app-post-list>
 
@@ -29,8 +29,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import PostList from '../../components/posts/PostList';
 import AppButton from '../../components/ui/AppButton';
+
+import { types as postTypes } from '../../store/modules/posts';
 
 export default {
 
@@ -39,7 +43,15 @@ export default {
     'app-button': AppButton
   },
 
-  layout: 'admin'
+  layout: 'admin',
+
+  computed: {
+
+    ...mapGetters({
+      loadedPosts: postTypes.withNamespace.GET_LOADED_POSTS
+    })
+
+  }
 
 }
 </script>
