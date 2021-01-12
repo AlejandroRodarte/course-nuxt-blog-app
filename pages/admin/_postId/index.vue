@@ -36,7 +36,7 @@ export default {
   async asyncData(ctx) {
 
     try {
-      const res = await axios.get(`https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts/${ ctx.params.postId }.json`);
+      const res = await axios.get(`${ process.env.baseUrl }/posts/${ ctx.params.postId }.json`);
       return { loadedPost: res.data, postId: ctx.params.postId };
     } catch (e) {
       ctx.error(e);

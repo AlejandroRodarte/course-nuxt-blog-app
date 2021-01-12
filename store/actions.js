@@ -8,7 +8,7 @@ const actions = {
 
     try {
 
-      const res = await axios.get('https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts.json');
+      const res = await axios.get(`${ process.env.baseUrl }/posts.json`);
 
       const posts = [];
 
