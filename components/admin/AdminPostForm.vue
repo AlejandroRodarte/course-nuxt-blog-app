@@ -84,7 +84,12 @@ export default {
   methods: {
 
     onSave() {
-      this.$emit('submit', this.editedPost);
+
+      this.$emit('submit', {
+        ...this.editedPost,
+        updatedDate: new Date()
+      });
+
     },
 
     onCancel() {

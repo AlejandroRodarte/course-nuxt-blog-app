@@ -45,33 +45,18 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 
-  asyncData(ctx) {
+  async asyncData(ctx) {
 
-    return new Promise((res, rej) => {
-
-      setTimeout(() => {
-
-        res({
-
-          loadedPost: {
-            id: '1',
-            title: `First post (id: ${ ctx.route.params.id })`,
-            previewText: 'Super cool first post!',
-            author: 'Alex',
-            updatedDate: new Date(),
-            content: 'Some dummy text content for this super awesome first post',
-            thumbnail: 'https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png'
-          }
-
-        });
-
-    }, 1000);
-
-    })
-    .then(data => data)
-    .catch(e => ctx.error(e));
+    try {
+      const res = await axios.get(`https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts/${ ctx.params.id }.json`);
+      return { loadedPost: res.data };
+    } catch (e) {
+      ctx.error(e);
+    }
 
   }
 
