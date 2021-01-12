@@ -29,7 +29,8 @@
       type="button"
       style="margin-left: 10px"
       btn-style="cancel"
-      @click="onCancel">
+      @click="onCancel"
+    >
       Cancel
     </app-button>
 
@@ -58,21 +59,24 @@ export default {
   },
 
   data() {
+
     return {
+
       editedPost: this.post ? { ...this.post } : {
         author: '',
         title: '',
         thumbnailLink: '',
         content: ''
       }
+
     }
+
   },
 
   methods: {
 
     onSave() {
-      // save the post
-      console.log(this.editedPost);
+      this.$emit('submit', this.editedPost);
     },
 
     onCancel() {

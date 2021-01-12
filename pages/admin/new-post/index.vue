@@ -4,7 +4,8 @@
 
     <section class="new-post-form">
 
-      <app-admin-post-form></app-admin-post-form>
+      <app-admin-post-form @submit="onSubmit">
+      </app-admin-post-form>
 
     </section>
 
@@ -13,6 +14,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 import AdminPostForm from '../../../components/admin/AdminPostForm';
 
 export default {
@@ -21,7 +24,20 @@ export default {
     'app-admin-post-form': AdminPostForm
   },
 
-  layout: 'admin'
+  layout: 'admin',
+
+  methods: {
+
+    onSubmit(postData) {
+
+      axios
+        .post('https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts.json', postData)
+        .then(console.log)
+        .catch(console.log);
+
+    }
+
+  }
 
 }
 </script>
