@@ -16,6 +16,4 @@ const withNamespace = {
   SET_POSTS: `${ MODULE_NAME }/${ SET_POSTS }`
 };
 
-const types = { withoutNamespace, withNamespace };
-
-export default types;
+export { withoutNamespace, withNamespace };

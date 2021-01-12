@@ -1,7 +1,7 @@
-import types from './types';
+import { withoutNamespace as types } from './types';
 
 const mutations = {
-  [types.withoutNamespace.MUTATE_SET_POSTS]: (state, payload) => state.loadedPosts = payload.posts
+  [types.MUTATE_SET_POSTS]: (state, payload) => state.loadedPosts = payload.posts
 };
 
 export default mutations;

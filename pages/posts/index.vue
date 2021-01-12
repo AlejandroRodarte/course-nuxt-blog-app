@@ -14,7 +14,7 @@ import { mapGetters } from 'vuex';
 
 import PostList from '../../components/posts/PostList';
 
-import { types as postTypes } from '../../store/modules/posts';
+import { withNamespace as postTypes } from '../../store/modules/posts';
 
 export default {
 
@@ -25,7 +25,7 @@ export default {
   computed: {
 
     ...mapGetters({
-      loadedPosts: postTypes.withNamespace.GET_LOADED_POSTS
+      loadedPosts: postTypes.GET_LOADED_POSTS
     })
 
   }

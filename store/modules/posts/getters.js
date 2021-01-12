@@ -1,7 +1,7 @@
-import types from './types';
+import { withoutNamespace as types } from './types';
 
 const getters = {
-  [types.withoutNamespace.GET_LOADED_POSTS]: state => state.loadedPosts
+  [types.GET_LOADED_POSTS]: state => state.loadedPosts
 };
 
 export default getters;

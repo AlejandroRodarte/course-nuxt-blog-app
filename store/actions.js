@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { types as postTypes } from './modules/posts';
+import { withNamespace as postTypes } from './modules/posts';
 
 const actions = {
 
@@ -21,7 +21,7 @@ const actions = {
 
       };
 
-      vuexCtx.dispatch(postTypes.withNamespace.SET_POSTS, { posts });
+      vuexCtx.dispatch(postTypes.SET_POSTS, { posts });
 
     } catch (e) {
       console.log(e);
