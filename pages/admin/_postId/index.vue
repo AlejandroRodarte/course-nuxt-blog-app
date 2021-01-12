@@ -4,7 +4,10 @@
 
     <section class="update-form">
 
-      <app-admin-post-form :post="loadedPost">
+      <app-admin-post-form
+        :post="loadedPost"
+        @submit="onSubmit"
+      >
       </app-admin-post-form>
 
     </section>
@@ -34,6 +37,22 @@ export default {
       return { loadedPost: res.data };
     } catch (e) {
       ctx.error(e);
+    }
+
+  },
+
+  methods: {
+
+    onSubmit(editedPost) {
+
+      axios
+        .put(`https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts/${ this.$route.params.postId }.json`, {
+          ...editedPost,
+          updatedDate: new Date()
+        })
+        .then(() => this.$router.push('/admin'))
+        .catch(console.log);
+
     }
 
   }
