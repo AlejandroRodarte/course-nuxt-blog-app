@@ -1,41 +1,31 @@
+import axios from 'axios';
+
 import { types as postTypes } from './modules/posts';
 
 const actions = {
 
-  nuxtServerInit(vuexCtx, ctx) {
+  async nuxtServerInit(vuexCtx, ctx) {
 
-    return new Promise((res, rej) => {
+    try {
 
-      setTimeout(() => {
+      const res = await axios.get('https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com/posts.json');
 
-        const posts = [
+      const posts = [];
 
-          {
-            id: '1',
-            title: 'First post',
-            previewText: 'Super cool first post!',
-            thumbnail: 'https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png'
-          },
+      for (const key in res.data) {
 
-          {
-            id: '2',
-            title: 'Second post',
-            previewText: 'Super cool second post!',
-            thumbnail: 'https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png'
-          }
+        posts.push({
+          id: key,
+          ...res.data[key]
+        });
 
-        ];
+      };
 
-        vuexCtx.dispatch(postTypes.withNamespace.SET_POSTS, { posts });
+      vuexCtx.dispatch(postTypes.withNamespace.SET_POSTS, { posts });
 
-        res();
-
-      }, 1000);
-
-      // to throw errors
-      // rej(new Error());
-
-    });
+    } catch (e) {
+      console.log(e);
+    }
 
   }
 
