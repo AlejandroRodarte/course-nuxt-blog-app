@@ -47,25 +47,31 @@
 <script>
 export default {
 
-  asyncData(ctx, cb) {
+  asyncData(ctx) {
 
-    setTimeout(() => {
+    return new Promise((res, rej) => {
 
-      cb(new Error(), {
+      setTimeout(() => {
 
-        loadedPost: {
-          id: '1',
-          title: `First post (id: ${ ctx.route.params.id })`,
-          previewText: 'Super cool first post!',
-          author: 'Alex',
-          updatedDate: new Date(),
-          content: 'Some dummy text content for this super awesome first post',
-          thumbnail: 'https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png'
-        }
+        res({
 
-      });
+          loadedPost: {
+            id: '1',
+            title: `First post (id: ${ ctx.route.params.id })`,
+            previewText: 'Super cool first post!',
+            author: 'Alex',
+            updatedDate: new Date(),
+            content: 'Some dummy text content for this super awesome first post',
+            thumbnail: 'https://prod-discovery.edx-cdn.org/media/course/image/efc25613-f0ea-4423-bfcd-4d94c317f085-5dd84e82e22b.small.png'
+          }
+
+        });
 
     }, 1000);
+
+    })
+    .then(data => data)
+    .catch(e => ctx.error(e));
 
   }
 

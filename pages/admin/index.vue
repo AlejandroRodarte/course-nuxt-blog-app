@@ -16,7 +16,11 @@
         Existing posts
       </h1>
 
-      <app-post-list isAdmin></app-post-list>
+      <app-post-list
+        isAdmin
+        :posts="[]"
+      >
+      </app-post-list>
 
     </section>
 
