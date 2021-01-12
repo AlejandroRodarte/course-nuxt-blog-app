@@ -10,7 +10,7 @@
       Title
     </app-control-input>
 
-    <app-control-input v-model="editedPost.thumbnailLink">
+    <app-control-input v-model="editedPost.thumbnail">
       Thumbnail Link
     </app-control-input>
 
@@ -19,6 +19,13 @@
       v-model="editedPost.content"
     >
       Content
+    </app-control-input>
+
+    <app-control-input
+      control-type="textarea"
+      v-model="editedPost.previewText"
+    >
+      PreviewText
     </app-control-input>
 
     <app-button type="submit">
@@ -65,8 +72,9 @@ export default {
       editedPost: this.post ? { ...this.post } : {
         author: '',
         title: '',
-        thumbnailLink: '',
-        content: ''
+        thumbnail: '',
+        content: '',
+        previewText: ''
       }
 
     }
