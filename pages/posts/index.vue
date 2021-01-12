@@ -12,6 +12,8 @@
 <script>
 import PostList from '../../components/posts/PostList';
 
+import { types as postTypes } from '../../store/modules/posts';
+
 export default {
 
   components: {
@@ -55,6 +57,11 @@ export default {
     .then(data => data)
     .catch(e => ctx.error(e));
 
+  },
+
+  created() {
+    this.$store.dispatch(postTypes.withNamespace.SET_POSTS, { posts: this.loadedPosts });
+    console.log(this.$store.getters[postTypes.withNamespace.GET_LOADED_POSTS]);
   }
 
 }
