@@ -52,6 +52,10 @@ export default {
   axios: {
     baseURL: process.env.BASE_URL || 'https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com',
     credentials: false
+  },
+
+  router: {
+    middleware: 'log'
   }
 
 }
