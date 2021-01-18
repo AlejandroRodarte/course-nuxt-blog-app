@@ -31,17 +31,9 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import PostList from '../../components/posts/PostList';
-import AppButton from '../../components/ui/AppButton';
-
 import { withNamespace as postTypes } from '../../store/modules/posts';
 
 export default {
-
-  components: {
-    'app-post-list': PostList,
-    'app-button': AppButton
-  },
 
   layout: 'admin',
 

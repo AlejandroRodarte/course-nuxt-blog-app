@@ -46,15 +46,7 @@
 </template>
 
 <script>
-import AppControlInput from '../ui/AppControlInput';
-import AppButton from '../ui/AppButton';
-
 export default {
-
-  components: {
-    'app-control-input': AppControlInput,
-    'app-button': AppButton
-  },
 
   props: {
 

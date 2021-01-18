@@ -36,19 +36,12 @@
 </template>
 
 <script>
-import AppControlInput from '../../../components/ui/AppControlInput'
-import AppButton from '../../../components/ui/AppButton'
 
 export default {
 
   name: 'app-admin-auth-page',
 
   layout: 'admin',
-
-  components: {
-    'app-control-input': AppControlInput,
-    'app-button': AppButton
-  },
 
   data() {
     return {

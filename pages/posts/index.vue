@@ -12,15 +12,9 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import PostList from '../../components/posts/PostList';
-
 import { withNamespace as postTypes } from '../../store/modules/posts';
 
 export default {
-
-  components: {
-    'app-post-list': PostList
-  },
 
   computed: {
 
