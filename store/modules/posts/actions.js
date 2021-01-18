@@ -1,17 +1,15 @@
-import axios from 'axios';
-
 import { withoutNamespace as types } from './types';
 
 const actions = {
 
-  [types.ADD_POST]: async (ctx, payload) => {
+  [types.ADD_POST]: async function(ctx, payload) {
 
     try {
 
-      const res = await axios.post(`${ payload.ctx.baseUrl }/posts.json`, payload.post);
+      const res = await this.$axios.$post('/posts.json', payload.post);
 
       const newPost = {
-        id: res.data.name,
+        id: res.name,
         ...payload.post
       };
 
@@ -27,11 +25,11 @@ const actions = {
 
   [types.SET_POSTS]: (ctx, payload) => ctx.commit(types.MUTATE_SET_POSTS, payload),
 
-  [types.EDIT_POST]: async (ctx, payload) => {
+  [types.EDIT_POST]: async function(ctx, payload) {
 
     try {
 
-      await axios.put(`${ payload.ctx.baseUrl }/posts/${ payload.postId }.json`, payload.post);
+      await this.$axios.$put(`/posts/${ payload.postId }.json`, payload.post);
 
       const mutationPayload = {
         post: {

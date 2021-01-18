@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 import { mapActions } from 'vuex';
 
 import AdminPostForm from '../../../components/admin/AdminPostForm';
@@ -36,8 +34,8 @@ export default {
   async asyncData(ctx) {
 
     try {
-      const res = await axios.get(`${ ctx.$config.baseUrl }/posts/${ ctx.params.postId }.json`);
-      return { loadedPost: res.data, postId: ctx.params.postId };
+      const res = await ctx.app.$axios.$get(`/posts/${ ctx.params.postId }.json`);
+      return { loadedPost: res, postId: ctx.params.postId };
     } catch (e) {
       ctx.error(e);
     }

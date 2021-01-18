@@ -45,15 +45,13 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
 
   async asyncData(ctx) {
 
     try {
-      const res = await axios.get(`${ ctx.$config.baseUrl }/posts/${ ctx.params.id }.json`);
-      return { loadedPost: res.data };
+      const res = await ctx.app.$axios.$get(`/posts/${ ctx.params.id }.json`);
+      return { loadedPost: res };
     } catch (e) {
       ctx.error(e);
     }

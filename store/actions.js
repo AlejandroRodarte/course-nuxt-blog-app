@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import { withNamespace as postTypes } from './modules/posts';
 
 const actions = {
@@ -8,15 +6,15 @@ const actions = {
 
     try {
 
-      const res = await axios.get(`${ ctx.$config.baseUrl }/posts.json`);
+      const res = await ctx.app.$axios.$get('/posts.json');
 
       const posts = [];
 
-      for (const key in res.data) {
+      for (const key in res) {
 
         posts.push({
           id: key,
-          ...res.data[key]
+          ...res[key]
         });
 
       };
