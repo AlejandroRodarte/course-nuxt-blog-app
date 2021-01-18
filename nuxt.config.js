@@ -41,7 +41,8 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseUrl: 'https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com'
+    baseUrl: 'https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com',
+    firebaseApiKey: 'AIzaSyAPvtJu_jPXTWCCLCNAOo-kFAsJGeeHmic'
   },
 
   transition: {
@@ -52,10 +53,6 @@ export default {
   axios: {
     baseURL: process.env.BASE_URL || 'https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com',
     credentials: false
-  },
-
-  router: {
-    middleware: 'log'
   }
 
 }

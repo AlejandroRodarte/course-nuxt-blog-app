@@ -4,13 +4,19 @@
 
     <div class="auth-container">
 
-      <form>
+      <form @submit.prevent="onSubmit">
 
-        <app-control-input type="email">
+        <app-control-input
+          type="email"
+          v-model="email"
+        >
           E-Mail Address
         </app-control-input>
 
-        <app-control-input type="password">
+        <app-control-input
+          type="password"
+          v-model="password"
+        >
           Password
         </app-control-input>
 
@@ -36,7 +42,6 @@
 </template>
 
 <script>
-
 export default {
 
   name: 'app-admin-auth-page',
@@ -45,8 +50,31 @@ export default {
 
   data() {
     return {
-      isLogin: true
+      isLogin: true,
+      email: '',
+      password: ''
     }
+  },
+
+  methods: {
+
+    async onSubmit() {
+
+      const payload = {
+        email: this.email,
+        password: this.password,
+        returnSecureToken: true
+      };
+
+      try {
+        const res = await this.$axios.$post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${ this.$config.firebaseApiKey }`, payload);
+        console.log(res);
+      } catch (e) {
+        console.log(e);
+      }
+
+    }
+
   }
 
 }

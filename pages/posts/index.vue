@@ -16,8 +16,6 @@ import { withNamespace as postTypes } from '../../store/modules/posts';
 
 export default {
 
-  middleware: 'log',
-
   computed: {
 
     ...mapGetters({
