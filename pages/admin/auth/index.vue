@@ -60,6 +60,12 @@ export default {
 
     async onSubmit() {
 
+      let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${ this.$config.firebaseApiKey }`;
+
+      if (!this.isLogin) {
+        url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${ this.$config.firebaseApiKey }`
+      }
+
       const payload = {
         email: this.email,
         password: this.password,
@@ -67,7 +73,7 @@ export default {
       };
 
       try {
-        const res = await this.$axios.$post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${ this.$config.firebaseApiKey }`, payload);
+        const res = await this.$axios.$post(url, payload);
         console.log(res);
       } catch (e) {
         console.log(e);
