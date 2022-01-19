@@ -1,63 +1,45 @@
 <template>
-
   <div class="header-container">
-
     <header class="the-header">
-
       <app-the-sidenav-toggle @toggle="$emit('sidenavToggle')">
       </app-the-sidenav-toggle>
-
       <div class="logo">
         <nuxt-link to="/">
           WD BLOG
         </nuxt-link>
       </div>
-
       <div class="spacer"></div>
-
       <div class="navigation-items">
-
         <ul class="nav-list">
-
           <li class="nav-item">
             <nuxt-link to="/posts">
               Blog
             </nuxt-link>
           </li>
-
           <li class="nav-item">
             <nuxt-link to="/about">
               About
             </nuxt-link>
           </li>
-
           <li class="nav-item">
             <nuxt-link to="/admin">
               Admin
             </nuxt-link>
           </li>
-
         </ul>
-
       </div>
-
     </header>
-
   </div>
-
 </template>
 
 <script>
-import TheSideNavToggle from "@/components/Navigation/TheSideNavToggle";
+import TheSidenavToggle from './TheSidenavToggle';
 
 export default {
-
   name: 'app-the-header',
-
   components: {
-    'app-the-sidenav-toggle': TheSideNavToggle
+    'app-the-sidenav-toggle': TheSidenavToggle
   }
-
 };
 </script>
 

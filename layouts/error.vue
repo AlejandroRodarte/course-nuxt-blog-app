@@ -1,23 +1,16 @@
 <template>
-
   <div class="error-page">
-
     <h1>
       Oops, something went wrong!
     </h1>
-
     <p>
-
       Back to
-
+      <!-- <a> tag instead of <nuxt-link> to send fresh, new page request to the server -->
       <a href="/">
         safety
       </a>
-
       !
-
     </p>
-
   </div>
 
 </template>

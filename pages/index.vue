@@ -1,37 +1,28 @@
 <template>
-
   <div class="home-page">
-
     <section class="intro">
-
       <h1>
         Get the latest tech news
       </h1>
-
     </section>
-
+    <!-- post list NOT on admin mode (redirect to /posts/:id when clicking post) -->
     <app-post-list :posts="loadedPosts">
     </app-post-list>
-
   </div>
-
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-
 import { withNamespace as postTypes } from '../store/modules/posts';
 
 export default {
-
+  // middleware will run when this page gets mounted
+  middleware: 'log',
   computed: {
-
     ...mapGetters({
       loadedPosts: postTypes.GET_LOADED_POSTS
     })
-
   }
-
 }
 </script>
 

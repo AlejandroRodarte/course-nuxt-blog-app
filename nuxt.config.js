@@ -21,7 +21,9 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/core-components.js',
-    '~/plugins/date-filter.js'
+    '~/plugins/date-filter.js',
+    '~/plugins/db-api.js',
+    '~/plugins/auth-api.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -41,18 +43,17 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseUrl: 'https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com',
-    firebaseApiKey: 'AIzaSyAPvtJu_jPXTWCCLCNAOo-kFAsJGeeHmic'
+    dbApiUrl: process.env.DB_API_URL,
+    authApiUrl: process.env.AUTH_API_URL,
+    firebaseApiKey: process.env.FIREBASE_API_KEY
+  },
+
+  axios: {
+    credentials: false
   },
 
   transition: {
     name: 'fade',
     mode: 'out-in'
-  },
-
-  axios: {
-    baseURL: process.env.BASE_URL || 'https://nuxtjs-course-blog-app-default-rtdb.firebaseio.com',
-    credentials: false
   }
-
 }

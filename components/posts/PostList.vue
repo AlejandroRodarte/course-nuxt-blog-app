@@ -1,7 +1,6 @@
 <template>
-
   <section class="post-list">
-
+    <!-- loop and render post previews -->
     <app-post-preview
       v-for="post in posts"
       :key="post.id"
@@ -12,34 +11,26 @@
       :previewText="post.previewText"
     >
     </app-post-preview>
-
   </section>
-
 </template>
 
 <script>
 import PostPreview from '../../components/posts/PostPreview';
 
 export default {
-
   components: {
     'app-post-preview': PostPreview
   },
-
   props: {
-
     isAdmin: {
       type: Boolean,
       default: false
     },
-
     posts: {
       type: Array,
       required: true
     }
-
   }
-
 }
 </script>
 

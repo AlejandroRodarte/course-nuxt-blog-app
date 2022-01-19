@@ -1,85 +1,62 @@
 <template>
-
   <nuxt-link
     :to="postPreviewLink"
     class="post-preview"
   >
-
     <article>
-
       <div
         class="post-thumbnail"
         :style="postThumbnailStyles"
       >
-
       </div>
-
       <div class="post-content">
-
         <h1>
           {{ title }}
         </h1>
-
         <p>
           {{ previewText }}
         </p>
-
       </div>
-
     </article>
-
   </nuxt-link>
-
 </template>
 
 <script>
 export default {
-
   name: 'app-post-preview',
-
   props: {
-
     id: {
       type: String,
       required: true
     },
-
     isAdmin: {
       type: Boolean,
       required: true
     },
-
     title: {
       type: String,
       required: true
     },
-
     previewText: {
       type: String,
       required: true
     },
-
     thumbnail: {
       type: String,
       required: true
     }
-
   },
-
   computed: {
-
     postPreviewLink() {
+      // admin flag determines redirect link (/admin/:id or /posts/:id)
       return this.isAdmin ? `/admin/${ this.id }` : `/posts/${ this.id }`;
     },
-
     postThumbnailStyles() {
       return {
         backgroundImage: `url(${ this.thumbnail })`
       };
     }
-
   }
-
 }
 </script>
 

@@ -1,67 +1,47 @@
 <template>
-
   <div class="single-post-page">
-
     <section class="post">
-
       <h1 class="post-title">
         {{ loadedPost.title }}
       </h1>
-
       <div class="post-details">
-
+        <!-- using the date filter we injected as plugin -->
         <div class="post-detail">
           Last updated on {{ loadedPost.updatedDate | date }}
         </div>
-
         <div class="post-detail">
           Written by {{ loadedPost.author }}
         </div>
-
       </div>
-
       <p class="post-content">
         {{ loadedPost.content }}
       </p>
-
     </section>
-
     <section class="post-feedback">
-
       <p>
-
         Let me know what you think about the post, send an email to
-
         <a href="mailto:alejandrorodarte1@gmail.com">
           mailto:alejandrorodarte1@gmail.com
         </a>
-
       </p>
-
     </section>
-
   </div>
-
 </template>
 
 <script>
 export default {
-
   async asyncData(ctx) {
-
     try {
-      const res = await ctx.app.$axios.$get(`/posts/${ ctx.params.id }.json`);
+      // fetch post from backend and load as component data
+      const res = await ctx.app.$dbApi.$get(`/posts/${ ctx.params.id }.json`);
       return { loadedPost: res };
     } catch (e) {
       ctx.error(e);
     }
-
   },
-
   head: {
     title: 'A Blog Post'
   }
-
 }
 </script>
 

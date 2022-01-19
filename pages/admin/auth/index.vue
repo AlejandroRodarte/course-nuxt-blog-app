@@ -1,29 +1,24 @@
 <template>
-
   <div class="admin-auth-page">
-
     <div class="auth-container">
-
+      <!-- signup/signin form -->
       <form @submit.prevent="onSubmit">
-
         <app-control-input
           type="email"
           v-model="email"
         >
           E-Mail Address
         </app-control-input>
-
         <app-control-input
           type="password"
           v-model="password"
         >
           Password
         </app-control-input>
-
+        <!-- signup/signin mode depends on boolean prop -->
         <app-button type="submit">
           {{ isLogin ? 'Login' : 'Sign Up' }}
         </app-button>
-
         <app-button
           type="button"
           btn-style="inverted"
@@ -32,22 +27,15 @@
         >
           Switch to {{ isLogin ? 'Signup' : 'Login' }}
         </app-button>
-
       </form>
-
     </div>
-
   </div>
-
 </template>
 
 <script>
 export default {
-
   name: 'app-admin-auth-page',
-
   layout: 'admin',
-
   data() {
     return {
       isLogin: true,
@@ -55,34 +43,26 @@ export default {
       password: ''
     }
   },
-
   methods: {
-
     async onSubmit() {
-
-      let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${ this.$config.firebaseApiKey }`;
-
+      // firebase REST API route changes between signin/signup modes
+      let url = `:signInWithPassword?key=${ this.$config.firebaseApiKey }`;
       if (!this.isLogin) {
-        url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${ this.$config.firebaseApiKey }`
+        url = `:signUp?key=${ this.$config.firebaseApiKey }`
       }
-
       const payload = {
         email: this.email,
         password: this.password,
         returnSecureToken: true
       };
-
       try {
-        const res = await this.$axios.$post(url, payload);
-        console.log(res);
+        // perform auth request
+        await this.$authApi.$post(url, payload);
       } catch (e) {
         console.log(e);
       }
-
     }
-
   }
-
 }
 </script>
 
