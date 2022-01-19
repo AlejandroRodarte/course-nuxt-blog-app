@@ -33,6 +33,9 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { withNamespace as authTypes } from '../../../store/modules/auth'
+
 export default {
   name: 'app-admin-auth-page',
   layout: 'admin',
@@ -44,20 +47,21 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      authenticateUser: authTypes.AUTHENTICATE_USER
+    }),
     async onSubmit() {
-      // firebase REST API route changes between signin/signup modes
-      let url = `:signInWithPassword?key=${ this.$config.firebaseApiKey }`;
-      if (!this.isLogin) {
-        url = `:signUp?key=${ this.$config.firebaseApiKey }`
-      }
       const payload = {
-        email: this.email,
-        password: this.password,
-        returnSecureToken: true
+        isLogin: this.isLogin,
+        credentials: {
+          email: this.email,
+          password: this.password,
+          returnSecureToken: true
+        }
       };
       try {
         // perform auth request
-        await this.$authApi.$post(url, payload);
+        await this.authenticateUser(payload);
       } catch (e) {
         console.log(e);
       }
