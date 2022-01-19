@@ -18,6 +18,7 @@ export default {
     'app-admin-post-form': AdminPostForm
   },
   layout: 'admin',
+  middleware: 'auth',
   methods: {
     ...mapActions({
       addPost: postTypes.ADD_POST
