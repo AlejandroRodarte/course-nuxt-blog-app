@@ -55,13 +55,13 @@ export default {
         isLogin: this.isLogin,
         credentials: {
           email: this.email,
-          password: this.password,
-          returnSecureToken: true
+          password: this.password
         }
       };
       try {
-        // perform auth request
+        // perform auth request; if successful, go to dashboard
         await this.authenticateUser(payload);
+        this.$router.push('/admin');
       } catch (e) {
         console.log(e);
       }

@@ -7,8 +7,12 @@ const actions = {
       url = `:signUp?key=${ this.$config.firebaseApiKey }`;
     }
     try {
-      const res = await this.$authApi.$post(url, payload.credentials);
-      console.log(res);
+      const res = await this.$authApi.$post(url, {
+        ...payload.credentials,
+        returnSecureToken: true
+      });
+      const mutationPayload = { token: res.idToken };
+      ctx.commit(types.MUTATE_SET_TOKEN, mutationPayload);
     } catch (e) {
       console.log(e);
     }
