@@ -4,7 +4,7 @@ const actions = {
   [types.ADD_POST]: async function(ctx, payload) {
     try {
       // POST request to backend to add post
-      const res = await this.$dbApi.$post('/posts.json', payload.post);
+      const res = await this.$dbApi.$post(`/posts.json?auth=${ ctx.rootState.auth.token }`, payload.post);
       const newPost = {
         id: res.name,
         ...payload.post
@@ -20,7 +20,7 @@ const actions = {
   [types.EDIT_POST]: async function(ctx, payload) {
     try {
       // PUT request to backend to edit post
-      await this.$dbApi.$put(`/posts/${ payload.postId }.json`, payload.post);
+      await this.$dbApi.$put(`/posts/${ payload.postId }.json?auth=${ ctx.rootState.auth.token }`, payload.post);
       const mutationPayload = {
         post: {
           id: payload.postId,
