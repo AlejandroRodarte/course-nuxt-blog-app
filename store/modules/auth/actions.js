@@ -11,11 +11,18 @@ const actions = {
         ...payload.credentials,
         returnSecureToken: true
       });
-      const mutationPayload = { token: res.idToken };
-      ctx.commit(types.MUTATE_SET_TOKEN, mutationPayload);
+      const mutateSetTokenPayload = { token: res.idToken };
+      ctx.commit(types.MUTATE_SET_TOKEN, mutateSetTokenPayload);
+      const setLogoutTimerPayload = { duration: res.expiresIn * 1000 };
+      ctx.dispatch(types.SET_LOGOUT_TIMER, setLogoutTimerPayload);
     } catch (e) {
       console.log(e);
     }
+  },
+  [types.SET_LOGOUT_TIMER]: function(ctx, payload) {
+    setTimeout(() => {
+      ctx.commit(types.MUTATE_CLEAR_TOKEN);
+    }, payload.duration);
   }
 };
 
