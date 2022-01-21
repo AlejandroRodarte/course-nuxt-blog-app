@@ -1,3 +1,4 @@
+import Cookie from 'js-cookie';
 import { withoutNamespace as types } from './types';
 
 const actions = {
@@ -23,7 +24,10 @@ const actions = {
         token: res.idToken,
         expirationDate: new Date().getTime() + (res.expiresIn * 1000)
       };
-      localStorage.setItem('userData', JSON.stringify(userData));
+      const stringifiedUserData = JSON.stringify(userData);
+      localStorage.setItem('userData', stringifiedUserData);
+      // also store on a cookie for code that runs on server
+      Cookie.set('userData', stringifiedUserData);
     } catch (e) {
       console.log(e);
     }
@@ -33,8 +37,17 @@ const actions = {
       ctx.commit(types.MUTATE_CLEAR_TOKEN);
     }, payload.duration);
   },
-  [types.INITIALIZE_AUTHENTICATION]: function(ctx) {
-    const stringifiedUserData = localStorage.getItem('userData');
+  [types.INITIALIZE_AUTHENTICATION]: function(ctx, payload) {
+    let stringifiedUserData = undefined;
+    // code runs on client; use local storage
+    if (payload.client) stringifiedUserData = localStorage.getItem('userData');
+    // code runs on server but there are no cookies set; non-authenticated user
+    else if (!payload.cookie) return;
+    // code runs on server and there are cookies set; check for 'userData' cookie
+    else {
+      const [, rawUserDataCookie] = payload.cookie.split(';').find(c => c.trim().startsWith('userData=')).split('=');
+      stringifiedUserData = decodeURIComponent(rawUserDataCookie);
+    }
     // no auth data exists
     if (!stringifiedUserData) return;
     const userData = JSON.parse(stringifiedUserData);
