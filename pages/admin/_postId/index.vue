@@ -21,7 +21,7 @@ export default {
     'app-admin-post-form': AdminPostForm
   },
   layout: 'admin',
-  middleware: 'auth',
+  middleware: ['check-token', 'auth'],
   async asyncData(ctx) {
     try {
       // fetch full post from backend and set as data

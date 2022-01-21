@@ -4,13 +4,15 @@ const MUTATE_SET_TOKEN = 'mutations/mutateSetToken';
 const MUTATE_CLEAR_TOKEN = 'mutations/mutateClearToken';
 const AUTHENTICATE_USER = 'actions/authenticateUser';
 const SET_LOGOUT_TIMER = 'actions/setLogoutTimer';
+const INITIALIZE_AUTHENTICATION = 'actions/initializeAuthentication';
 
 const withoutNamespace = {
   IS_AUTHENTICATED,
   MUTATE_SET_TOKEN,
   MUTATE_CLEAR_TOKEN,
   AUTHENTICATE_USER,
-  SET_LOGOUT_TIMER
+  SET_LOGOUT_TIMER,
+  INITIALIZE_AUTHENTICATION
 };
 
 const withNamespace = {
@@ -19,6 +21,7 @@ const withNamespace = {
   MUTATE_CLEAR_TOKEN: `${ MODULE_NAME }/${ MUTATE_CLEAR_TOKEN }`,
   AUTHENTICATE_USER: `${ MODULE_NAME }/${ AUTHENTICATE_USER }`,
   SET_LOGOUT_TIMER: `${ MODULE_NAME }/${ SET_LOGOUT_TIMER }`,
+  INITIALIZE_AUTHENTICATION: `${ MODULE_NAME }/${ INITIALIZE_AUTHENTICATION }`,
 };
 
 export { withoutNamespace, withNamespace };

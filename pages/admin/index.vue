@@ -25,7 +25,7 @@ import { withNamespace as postTypes } from '../../store/modules/posts';
 
 export default {
   layout: 'admin',
-  middleware: 'auth',
+  middleware: ['check-token', 'auth'],
   computed: {
     ...mapGetters({
       loadedPosts: postTypes.GET_LOADED_POSTS

@@ -18,7 +18,7 @@ export default {
     'app-admin-post-form': AdminPostForm
   },
   layout: 'admin',
-  middleware: 'auth',
+  middleware: ['check-token', 'auth'],
   methods: {
     ...mapActions({
       addPost: postTypes.ADD_POST
