@@ -4,6 +4,9 @@
       <app-button @click="$router.push('/admin/new-post')">
         Create post
       </app-button>
+      <app-button @click="onLogout">
+        Logout
+      </app-button>
     </section>
     <section class="existing-posts">
       <h1>
@@ -20,8 +23,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { withNamespace as postTypes } from '../../store/modules/posts';
+import { withNamespace as authTypes } from '../../store/modules/auth';
 
 export default {
   layout: 'admin',
@@ -30,6 +34,15 @@ export default {
     ...mapGetters({
       loadedPosts: postTypes.GET_LOADED_POSTS
     })
+  },
+  methods: {
+    ...mapActions({
+      setLogout: authTypes.SET_LOGOUT
+    }),
+    onLogout() {
+      const payload = { redirect: true };
+      this.setLogout(payload);
+    }
   }
 }
 </script>
