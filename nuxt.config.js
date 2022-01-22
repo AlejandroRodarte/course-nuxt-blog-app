@@ -23,7 +23,8 @@ export default {
     '~/plugins/core-components.js',
     '~/plugins/date-filter.js',
     '~/plugins/db-api.js',
-    '~/plugins/auth-api.js'
+    '~/plugins/auth-api.js',
+    { src: '~/plugins/auth-setup.js', mode: 'client' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

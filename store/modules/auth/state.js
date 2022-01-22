@@ -1,5 +1,6 @@
 const state = () => ({
-  token: null
+  token: null,
+  timerId: null
 });
 
 export default state;

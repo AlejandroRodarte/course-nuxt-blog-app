@@ -39,6 +39,7 @@ import { withNamespace as authTypes } from '../../../store/modules/auth'
 export default {
   name: 'app-admin-auth-page',
   layout: 'admin',
+  middleware: 'anonymous',
   data() {
     return {
       isLogin: true,
