@@ -46,9 +46,10 @@ export default {
   },
 
   publicRuntimeConfig: {
+    hostUrl: process.env.HOST_URL,
     dbApiUrl: process.env.DB_API_URL,
     authApiUrl: process.env.AUTH_API_URL,
-    proxyApiUrl: process.env.PROXY_API_URL,
+    proxyApiPrefix: process.env.PROXY_API_PREFIX,
     firebaseApiKey: process.env.FIREBASE_API_KEY
   },
 

@@ -33,8 +33,6 @@ const actions = {
         'userData',
         stringifiedUserData,
         {
-          path: '/',
-          domain: 'localhost',
           sameSite: 'Lax',
           expires: 365
         }
@@ -67,7 +65,7 @@ const actions = {
     ctx.commit(types.MUTATE_SET_LOGOUT);
     // delete auth data on local storage and cookie
     localStorage.removeItem('userData');
-    Cookie.remove('userData', { path: '/', domain: 'localhost' });
+    Cookie.remove('userData');
     // redirect to signin/signup form if requested
     if (payload.redirect && this.$router.history.current.path.startsWith('/admin')) this.$router.replace('/admin/auth');
   },
