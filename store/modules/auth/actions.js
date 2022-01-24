@@ -39,6 +39,9 @@ const actions = {
           expires: 365
         }
       );
+      // call our server-middleware api
+      const trackDataPayload = { data: `User ${payload.credentials.email} authenticated.` };
+      await this.$proxyApi.$post('/track-data', trackDataPayload);
     } catch (e) {
       console.log(e);
     }

@@ -24,6 +24,7 @@ export default {
     '~/plugins/date-filter.js',
     '~/plugins/db-api.js',
     '~/plugins/auth-api.js',
+    '~/plugins/proxy-api.js',
     { src: '~/plugins/auth-setup.js', mode: 'client' }
   ],
 
@@ -46,6 +47,7 @@ export default {
   publicRuntimeConfig: {
     dbApiUrl: process.env.DB_API_URL,
     authApiUrl: process.env.AUTH_API_URL,
+    proxyApiUrl: process.env.PROXY_API_URL,
     firebaseApiKey: process.env.FIREBASE_API_KEY
   },
 
